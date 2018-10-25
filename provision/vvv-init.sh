@@ -97,6 +97,7 @@ fi
 # Plugins
 
 ## Uninstall
+
 if [[ wp plugin is-installed hello ]]; then
   wp plugin uninstall hello
 fi
@@ -105,3 +106,8 @@ if [[ wp plugin is-installed akismet ]]; then
 fi
 
 ## Install
+
+if [[ ! wp plugin is-installed contact-form-7 ]]; then
+  wp plugin install contact-form-7 --activate
+  wp post create --post_type=page --post_title='Contact' --post_content='[contact-form]'
+fi
