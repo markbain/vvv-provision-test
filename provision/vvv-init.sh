@@ -5,15 +5,11 @@
 echo -e "\nWelcome to Bain Design VVV Provisioning!"
 
 # Define webroot
-if [[ ! -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf" ]]; then
-  cp -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf.default" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
-  if [[ ! -f "custom-configs/${VVV_SITE_NAME}.conf" ]]; then
-    source "custom-configs/${VVV_SITE_NAME}.conf"
-    sed -i "s#public_html#${WEBROOT}#" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
-  fi
+if [[ ! -f "/vagrant/www/custom-configs/${VVV_SITE_NAME}.conf" ]]; then
+  source "/vagrant/www/custom-configs/${VVV_SITE_NAME}.conf"
+else
+  WEBROOT="public_html"
 fi
-
-source "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
 
 # Configure WP-CLI
 echo -e "\nCreating or updating 'wp-cli.yml'"
@@ -68,22 +64,21 @@ if ! $(noroot wp core is-installed); then
   noroot wp core ${INSTALL_COMMAND} --url="${DOMAIN}" --quiet --title="${SITE_TITLE}" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
 else
   echo "Updating WordPress Stable..."
-  cd ${VVV_PATH_TO_SITE}/${WEBROOT}
-  noroot wp core update --version="${WP_VERSION}"
+  noroot wp core update --version="${WP_VERSION}" --path="${VVV_PATH_TO_SITE}/${WEBROOT}"
 fi
 
 # Create some directories
 if [[ ! -d "${VVV_PATH_TO_SITE}/import" ]]; then
     echo "Creating Import directory..."
-    mkdir -p import
+    mkdir -p ${VVV_PATH_TO_SITE}/import
 fi
 if [[ ! -d "${VVV_PATH_TO_SITE}/export" ]]; then
     echo "Creating Export directory..."
-    mkdir -p export
+    mkdir -p ${VVV_PATH_TO_SITE}/export
 fi
 if [[ ! -d "${VVV_PATH_TO_SITE}/release" ]]; then
     echo "Creating Release directory..."
-    mkdir -p release
+    mkdir -p ${VVV_PATH_TO_SITE}/release
 fi
 
 cp -f "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf.tmpl" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
