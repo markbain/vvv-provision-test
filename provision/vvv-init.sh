@@ -4,8 +4,13 @@
 # Intro 
 echo -e "\nWelcome to Bain Design VVV Provisioning!"
 
+# Define webroot
 if [[ ! -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf" ]]; then
   cp -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf.default" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
+  if [[ ! -f "custom-configs/${VVV_SITE_NAME}.conf" ]]; then
+    source "custom-configs/${VVV_SITE_NAME}.conf"
+    sed -i "s#public_html#${WEBROOT}#" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
+  fi
 fi
 
 source "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
