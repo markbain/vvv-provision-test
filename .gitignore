@@ -13,3 +13,4 @@ wp-cli.yml
 provision/*
 !provision/vvv-init.sh
 !provision/vvv-nginx.conf.tmpl
+!provision/custom-provision.conf.tmpl
