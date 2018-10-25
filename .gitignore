@@ -1,5 +1,15 @@
+export
+htdocs
+httpdocs
+import
+log
+release
 
-/log/
-/provision/vvv-nginx.conf
-/public_html
-*.sublime-workspace
+provisioning-script_vvv.sublime-*
+!provisioning-script_vvv.sublime-project
+
+wp-cli.yml
+
+provision/*
+!provision/vvv-init.sh
+!provision/vvv-nginx.conf.tmpl
