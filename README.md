@@ -19,3 +19,16 @@ This repo can be used as-is as the provisioner to jump-start **new** VVV project
 * Make changes and push them
 * Once you've pushed changes, you can run `vagrant reload --provision` in your VM to test. 
 * Have fun!
+
+## Custom webroot
+
+By default, this script will install your site in `public_html`. If you want to change this, perhaps because you are working with an existing project that uses another directory as the webroot, you can change where this script installs WordPress. 
+
+* Before provisioning for the first time, create the following project folders and files:
+
+```
+mkdir -p my-project 
+mkdir -p my-project/provision
+touch my-project/provision/custom-provision.conf
+echo 'WEBROOT="htdocs"' > my-project/provision/custom-provision.conf
+``` 
