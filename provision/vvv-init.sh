@@ -93,3 +93,15 @@ else
     sed -i "s#{{TLS_CERT}}##" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
     sed -i "s#{{TLS_KEY}}##" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
 fi
+
+# Plugins
+
+## Uninstall
+if [[ wp plugin is-installed hello ]]; then
+  wp plugin uninstall hello
+fi
+if [[ wp plugin is-installed akismet ]]; then
+  wp plugin uninstall akismet
+fi
+
+## Install
