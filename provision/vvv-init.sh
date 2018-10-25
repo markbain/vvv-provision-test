@@ -5,10 +5,7 @@
 echo -e "\nWelcome to Bain Design VVV Provisioning!"
 
 if [[ ! -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf" ]]; then
-  cp -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf.tmpl" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
-  echo -e "\nEnter the webroot (e.g. htdocs), followed by [ENTER]:"
-  read -p path
-  sed -i "s#{{WEBROOT_HERE}}#${path}#" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
+  cp -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf.default" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
 fi
 
 source "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
