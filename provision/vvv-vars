@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+DOMAIN=`get_primary_host "${VVV_SITE_NAME}".test`
+DOMAINS=`get_hosts "${DOMAIN}"`
+SITE_TITLE=`get_config_value 'site_title' "${DOMAIN}"`
+WP_VERSION=`get_config_value 'wp_version' 'latest'`
+WP_TYPE=`get_config_value 'wp_type' "single"`
+DB_NAME=`get_config_value 'db_name' "${VVV_SITE_NAME}"`
+DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*-]/}
+
+scripts_dir="${VVV_PATH_TO_SITE}/provision/scripts"
+archives_directory="/vagrant/www/custom-configs/${VVV_SITE_NAME}"
+archive_files="${archives_directory}/files.zip"
+archive_db="${archives_directory}/db.zip"
