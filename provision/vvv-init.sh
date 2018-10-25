@@ -67,4 +67,6 @@ source "${scripts_dir}/ssl.sh"
 source "${scripts_dir}/nginx.sh"
 source "${scripts_dir}/create_dirs.sh"
 source "${scripts_dir}/import.sh"
-source "${scripts_dir}/replace.sh"
+# source "${scripts_dir}/replace.sh"
+
+# Run NPM init if there's a package.json
