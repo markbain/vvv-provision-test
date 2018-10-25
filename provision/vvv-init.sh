@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Provision WordPress Stable
 
+source "vvv-vars"
+
 # Intro 
 echo -e "\nWelcome to Bain Design VVV Provisioning!"
 
@@ -16,13 +18,7 @@ echo -e "\nCreating or updating 'wp-cli.yml'"
 cp -f "${VVV_PATH_TO_SITE}/wp-cli.yml.tmpl" "${VVV_PATH_TO_SITE}/wp-cli.yml"
 sed -i "s#{{WEBROOT_HERE}}#${WEBROOT}#" "${VVV_PATH_TO_SITE}/wp-cli.yml"
 
-DOMAIN=`get_primary_host "${VVV_SITE_NAME}".test`
-DOMAINS=`get_hosts "${DOMAIN}"`
-SITE_TITLE=`get_config_value 'site_title' "${DOMAIN}"`
-WP_VERSION=`get_config_value 'wp_version' 'latest'`
-WP_TYPE=`get_config_value 'wp_type' "single"`
-DB_NAME=`get_config_value 'db_name' "${VVV_SITE_NAME}"`
-DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*-]/}
+
 
 # Make a database, if we don't already have one
 echo -e "\nCreating database '${DB_NAME}' (if it's not already there)"
@@ -67,19 +63,6 @@ else
   noroot wp core update --version="${WP_VERSION}" --path="${VVV_PATH_TO_SITE}/${WEBROOT}"
 fi
 
-# Create some directories
-if [[ ! -d "${VVV_PATH_TO_SITE}/import" ]]; then
-    echo "Creating Import directory..."
-    mkdir -p ${VVV_PATH_TO_SITE}/import
-fi
-if [[ ! -d "${VVV_PATH_TO_SITE}/export" ]]; then
-    echo "Creating Export directory..."
-    mkdir -p ${VVV_PATH_TO_SITE}/export
-fi
-if [[ ! -d "${VVV_PATH_TO_SITE}/release" ]]; then
-    echo "Creating Release directory..."
-    mkdir -p ${VVV_PATH_TO_SITE}/release
-fi
 
 cp -f "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf.tmpl" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
 sed -i "s#{{DOMAINS_HERE}}#${DOMAINS}#" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
@@ -93,3 +76,7 @@ else
     sed -i "s#{{TLS_CERT}}##" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
     sed -i "s#{{TLS_KEY}}##" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
 fi
+
+source "${scripts_dir}/create_dirs.sh"
+source "${scripts_dir}/import.sh"
+source "${scripts_dir}/replace.sh"
