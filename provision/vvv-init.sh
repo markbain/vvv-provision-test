@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 # Provision WordPress Stable
 
+# Intro 
+echo -e "\nWelcome to Bain Design VVV Provisioning!"
+
+if [[ ! -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf" ]]; then
+  cp -f "${VVV_PATH_TO_SITE}/provision/custom-provision.conf.tmpl" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
+  read -p "Enter the webroot (e.g. htdocs), followed by [ENTER]: " path
+  sed -i "s#{{WEBROOT_HERE}}#${path}#" "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
+fi
+
 source "${VVV_PATH_TO_SITE}/provision/custom-provision.conf"
 
 # Configure WP-CLI
