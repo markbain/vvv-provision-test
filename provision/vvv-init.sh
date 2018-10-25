@@ -10,6 +10,7 @@ if [[ ! -f "/vagrant/www/custom-configs/${VVV_SITE_NAME}.conf" ]]; then
 else
   WEBROOT="public_html"
 fi
+echo -e "\nWordPress directory: ${VVV_PATH_TO_SITE}/${WEBROOT}"
 
 # Configure WP-CLI
 echo -e "\nCreating or updating 'wp-cli.yml'"
@@ -69,15 +70,15 @@ fi
 
 # Create some directories
 if [[ ! -d "${VVV_PATH_TO_SITE}/import" ]]; then
-    echo "Creating Import directory..."
+    echo "Creating Import directory at ${VVV_PATH_TO_SITE}/import"
     mkdir -p ${VVV_PATH_TO_SITE}/import
 fi
 if [[ ! -d "${VVV_PATH_TO_SITE}/export" ]]; then
-    echo "Creating Export directory..."
+    echo "Creating Export directory at ${VVV_PATH_TO_SITE}/export"
     mkdir -p ${VVV_PATH_TO_SITE}/export
 fi
 if [[ ! -d "${VVV_PATH_TO_SITE}/release" ]]; then
-    echo "Creating Release directory..."
+    echo "Creating Release directory at ${VVV_PATH_TO_SITE}/release"
     mkdir -p ${VVV_PATH_TO_SITE}/release
 fi
 
