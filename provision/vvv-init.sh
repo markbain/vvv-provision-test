@@ -4,7 +4,9 @@
 # Intro 
 echo -e "\nWelcome to Bain Design VVV Provisioning!"
 
-# Define webroot
+# Custom Site Configs
+
+## Define webroot
 if [[ -f "/vagrant/www/custom-configs/${VVV_SITE_NAME}.conf" ]]; then
   source "/vagrant/www/custom-configs/${VVV_SITE_NAME}.conf"
 else
