@@ -2,52 +2,7 @@
 	"folders":
 	[
 		{
-			"file_exclude_patterns":
-			[
-				"*.png",
-				"*.ico",
-				"*.xml"
-			],
-			"folder_exclude_patterns":
-			[
-				"assets"
-			],
-			"name": "Theme",
-			"path": "htdocs/wp-content/themes/empowerment"
-		},
-		{
-			"name": "JS",
-			"path": "htdocs/wp-content/themes/empowerment/assets/js/custom"
-		},
-		{
-			"name": "Custom Plugins",
-			"path": "htdocs/wp-content/plugins/empowerment-plugin"
-		},
-		{
-			"name": "MU Plugins",
-			"path": "htdocs/wp-content/mu-plugins"
-		},
-		{
-			"file_exclude_patterns":
-			[
-				"*.css.map"
-			],
-			"folder_exclude_patterns":
-			[
-				".sass-cache",
-				".tmp",
-				"bower_components",
-				"dist",
-				"node_modules",
-				"rc",
-				"sass"
-			],
-			"name": "Root",
 			"path": "."
-		},
-		{
-			"name": "Bin",
-			"path": "bin"
 		}
 	]
 }
