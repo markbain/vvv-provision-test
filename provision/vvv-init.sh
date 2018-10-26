@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 source "vvv-vars"
+
+echo -e "\n-----------------------------\n\n"
+
 source "${scripts_dir}/webroot.sh"
 
 # Configure WP-CLI
@@ -60,3 +63,4 @@ source "${scripts_dir}/import.sh"
 # source "${scripts_dir}/replace.sh"
 
 # Run NPM init if there's a package.json
+source "${scripts_dir}/npm.sh"
