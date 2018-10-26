@@ -11,4 +11,4 @@ DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*-]/}
 scripts_dir="${VVV_PATH_TO_SITE}/provision/scripts"
 archives_directory="/vagrant/www/custom-configs/${VVV_SITE_NAME}"
 archive_files="${archives_directory}/files.zip"
-archive_db="${archives_directory}/db.zip"
+archive_db="${archives_directory}/db.sql.zip"

@@ -7,6 +7,6 @@ if [[ -d "${archives_files}" ]]; then
 fi
 if [[ -d "$archives_db" ]]; then
    unzip $db -d "${VVV_PATH_TO_SITE}/${WEBROOT}"
-   wp db import
-   wp search-replace "${OLD_DOMAIN}" "${DOMAIN}" --all-tables
+   wp db import db
+   wp search-replace "${old_domain}" "${DOMAIN}" --all-tables
 fi

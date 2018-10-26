@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
-# Provision WordPress Stable
 
 source "vvv-vars"
-
-# Intro 
-echo -e "\nWelcome to Bain Design VVV Provisioning!"
-
-# Define webroot
-if [[ ! -f "/vagrant/www/custom-configs/${VVV_SITE_NAME}.conf" ]]; then
-  source "/vagrant/www/custom-configs/${VVV_SITE_NAME}.conf"
-else
-  WEBROOT="public_html"
-fi
+source "${scripts_dir}/webroot.sh"
 
 # Configure WP-CLI
 echo -e "\nCreating or updating 'wp-cli.yml'"
