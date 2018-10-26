@@ -53,8 +53,8 @@ else
   noroot wp core update --version="${WP_VERSION}" --path="${VVV_PATH_TO_SITE}/${WEBROOT}"
 fi
 
-source "${scripts_dir}/ssl.sh"
 source "${scripts_dir}/nginx.sh"
+source "${scripts_dir}/ssl.sh"
 source "${scripts_dir}/create_dirs.sh"
 source "${scripts_dir}/import.sh"
 # source "${scripts_dir}/replace.sh"
